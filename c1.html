@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Concepts Assignment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #64b5f6, #ff8a65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .app {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      max-width: 800px;
+    }
+    h1, h2 {
+      color: #333;
+      text-align: center;
+    }
+    .conditional-section, .form-section {
+      margin-bottom: 20px;
+    }
+    .message-box {
+      padding: 10px;
+      background-color: #ffc107;
+      border-radius: 4px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-label input {
+      margin-right: 10px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.19/dist/vue.global.min.js"></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <h1>Vue 3 Concepts Assignment</h1>
+    
+    <!-- Conditional Rendering -->
+    <div class="conditional-section">
+      <h2>Conditional Rendering</h2>
+    
+    <!-- Form Input Handling -->
+    <div class="form-section">
+      
+      <input v-model="textInput" placeholder="Type something..." class="input-field">
+      <p>You typed: {{ textInput }}</p>
+      
+      <div class="checkbox-label">
+        <input type="checkbox" v-model="isChecked" class="checkbox">
+        <label>Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          showMessage: true,
+          showMessageWithVShow: true,
+          showMessageWithVFor: true,
+          items: ['Item 1', 'Item 2', 'Item 3'],
+          textInput: '',
+          isChecked: false,
+        };
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Todo App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: blueviolet;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 102vh;
+    }
+    .app {
+      width: 80%;
+      padding: 20px;
+      border: 1px solid black;
+      background-color: pink;
+      border-radius: 12px;
+    }
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid black;
+      background-color: lightskyblue;
+      border-radius: 4px;
+    }
+    .task-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .delete-button {
+      background-color: grey;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.19/dist/vue.global.min.js"></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <h1>The Todo List</h1>
+    <input v-model="newTask" @keyup.enter="addTask" placeholder="Add a new task" class="task-input">
+    
+    <ul>
+      <li v-for="(task, index) in tasks" :key="index" class="task-item">
+        <label>
+          <input type="checkbox" v-model="task.completed">
+          {{ task.text }}
+        </label>
+        <button @click="deleteTask(index)" class="delete-button">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          newTask: '',
+          tasks: []
+        };
+      },
+      methods: {
+        addTask() {
+          if (this.newTask.trim() !== '') {
+            this.tasks.push({ text: this.newTask, completed: false });
+            this.newTask = '';
+          }
+        },
+        deleteTask(index) {
+          this.tasks.splice(index, 1);
+        }
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
